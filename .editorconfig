@@ -1,0 +1,4 @@
+root = true
+[*.{js,ejs,css,scss,html,vue,ts,tsx}]
+indent_style = tab
+indent_size = 4

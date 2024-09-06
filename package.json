@@ -1,0 +1,12 @@
+{
+  "name": "dev_profile",
+  "version": "1.0.0",
+  "description": "About developer page",
+  "main": "index.js",
+  "scripts": {},
+  "author": "epik7th",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  }
+}
