@@ -1,0 +1,25 @@
+// Обрамление из квадратных скобок: логотип и пункты меню при наведении.
+@mixin bracket-frame($left, $right, $color) {
+	&::before,
+	&::after {
+		position: absolute;
+		color: $color;
+	}
+
+	&::before {
+		content: '[';
+		margin-left: $left;
+	}
+
+	&::after {
+		content: ']';
+		margin-right: $right;
+	}
+}
+
+// Градиентный текст с прозрачной заливкой.
+@mixin gradient-text($from, $to, $stop) {
+	background: -webkit-linear-gradient(45deg, $from, $to $stop);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
