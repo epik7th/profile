@@ -564,7 +564,7 @@ Expected: сборка успешна, в `dist/assets/` есть CSS-файл.
 Проверить содержимое собранного CSS:
 ```bash
 grep -l "DevFont" dist/assets/*.css
-grep -c "body::before" dist/assets/*.css
+grep -cE "body::?before" dist/assets/*.css
 ```
 Expected: файл найден, счётчик больше нуля.
 
