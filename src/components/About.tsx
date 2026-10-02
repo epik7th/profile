@@ -16,8 +16,8 @@ export default function About() {
 					<li>Billing</li>
 				</ul>
 				<p>
-					Все приложения разрабатывал на JavaScript и front-end и back-end, хорошо владею SQL
-					языком
+					Все приложения разрабатывал на JavaScript и front-end и back-end, хорошо владею
+					SQL языком
 				</p>
 			</article>
 		</section>
