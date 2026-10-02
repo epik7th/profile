@@ -30,7 +30,10 @@ prettier, GitHub Actions → GitHub Pages.
   неверен. Команды `run build` / `run dev` сети не требуют и флага не нужны.
 - Дев-сервер: порт **5173**, запускается фоновым job-ом (`npm run dev`). Перед curl-проверкой
   убедиться, что он отвечает; если нет — перезапустить. Все проверки в задачах идут против
-  `http://127.0.0.1:5173`.
+  `http://localhost:5173`.
+  **Проверено на практике:** Vite 8 слушает только IPv6 (`lsof` показывает `[::1]:5173`),
+  поэтому `http://127.0.0.1:5173` даёт отказ соединения (`curl` exit 7), а `localhost`
+  работает. Использовать именно `localhost`; `server.host` в конфиге не переопределять.
 - `base: './'` в `vite.config.ts` обязателен: сайт публикуется в подпапку
   `https://epik7th.github.io/profile/`.
 - SCSS: только `@use`/`@forward`, никакого `@import`. Цвета и шрифты — только через
@@ -318,7 +321,7 @@ npm run dev
 ```
 Затем:
 ```bash
-curl -s -o /dev/null -w '%{http_code}\n' http://127.0.0.1:5173/
+curl -s -o /dev/null -w '%{http_code}\n' http://localhost:5173/
 ```
 Expected: `200`. Дев-сервер оставить работающим для следующих задач.
 
@@ -568,7 +571,7 @@ Expected: файл найден, счётчик больше нуля.
 Проверить ассеты на работающем дев-сервере:
 ```bash
 for p in /src/assets/images/bg.jpg /src/assets/fonts/JetBrainsMono-Light.woff2; do
-  printf '%s -> ' "$p"; curl -s -o /dev/null -w '%{http_code}\n' "http://127.0.0.1:5173$p"
+  printf '%s -> ' "$p"; curl -s -o /dev/null -w '%{http_code}\n' "http://localhost:5173$p"
 done
 ```
 Expected: оба `200`.
@@ -812,7 +815,7 @@ Expected: все три команды успешны.
 
 Проверить, что страница содержит шапку и заголовок:
 ```bash
-curl -s http://127.0.0.1:5173/ | head -5
+curl -s http://localhost:5173/ | head -5
 ```
 Expected: HTML оболочки; содержимое рендерит React, поэтому проверка — скриншотом:
 
@@ -836,7 +839,7 @@ rm -rf "$PROFILE"
 [ -s "$OUT" ] && echo "OK   $OUT ($(stat -f%z "$OUT") байт)" || { echo "FAIL $OUT"; exit 1; }
 EOF
 chmod +x /tmp/dsh-shot.sh
-/tmp/dsh-shot.sh "http://127.0.0.1:5173/" /tmp/task3.png "1440,900"
+/tmp/dsh-shot.sh "http://localhost:5173/" /tmp/task3.png "1440,900"
 ```
 Expected: `OK`, на снимке — шапка с логотипом и меню, блок `<Fullstack web Developer / >`
 с градиентом, фото, печатающийся текст. Часть секций пока отсутствует — это нормально.
@@ -1032,7 +1035,7 @@ npm run typecheck && npm run lint && npm run build
 Expected: успешно.
 
 ```bash
-/tmp/dsh-shot.sh "http://127.0.0.1:5173/" /tmp/task4-desktop.png "1440,2800"
+/tmp/dsh-shot.sh "http://localhost:5173/" /tmp/task4-desktop.png "1440,2800"
 ```
 Expected: на снимке все секции — «#Обо мне», «#Достижения», «#Навыки» с 12 тегами,
 «#Контакты» с двумя строками и иконками. Проверить глазами, что фон, фото и шрифты на месте.
@@ -1276,7 +1279,7 @@ src/assets/                 изображения, иконки, шрифты
 
 Run:
 ```bash
-for p in / /src/main.tsx; do printf '%s -> ' "$p"; curl -s -o /dev/null -w '%{http_code}\n' "http://127.0.0.1:5173$p"; done
+for p in / /src/main.tsx; do printf '%s -> ' "$p"; curl -s -o /dev/null -w '%{http_code}\n' "http://localhost:5173$p"; done
 ```
 Expected: `200` на оба пути — порт 5173 из документа совпадает с фактическим.
 Если сервер не отвечает, перезапустить `npm run dev` фоновым job-ом и повторить.
@@ -1323,8 +1326,8 @@ Expected: сборка успешна, `dist/` создан. Удаление н
 Убедиться, что дев-сервер запущен, и снять те же два размера, что и эталон:
 
 ```bash
-/tmp/dsh-shot.sh "http://127.0.0.1:5173/" docs/verification/after-desktop.png "1440,2800" 10000
-/tmp/dsh-shot.sh "http://127.0.0.1:5173/" docs/verification/after-mobile.png  "390,1400"  10000
+/tmp/dsh-shot.sh "http://localhost:5173/" docs/verification/after-desktop.png "1440,2800" 10000
+/tmp/dsh-shot.sh "http://localhost:5173/" docs/verification/after-mobile.png  "390,1400"  10000
 ```
 Expected: два `OK`.
 
