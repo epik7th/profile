@@ -1,0 +1,30 @@
+// Палитра и базовые значения. Значения перенесены из styles.css при миграции
+// на SCSS; исходный файл удалён, значения менять только здесь.
+
+$color-bg: black;
+$color-text: #6aab73;
+$color-heading: #56a8f5;
+$color-link: #548af7;
+$color-link-hover: #bea1ef;
+$color-nav-link: #42c3d4;
+$color-nav-link-hover: aqua;
+$color-accent-pink: #cc55b9;
+$color-border: #27272a;
+$color-tag-text: #75757e;
+$color-tag-hover: #00ff95;
+$color-footer-bg: #18181a;
+$color-header-bg: #ffffff30;
+$color-white: #fff;
+$color-bracket: rgba(255, 255, 255, 0.5);
+$color-icon: rgba(255, 255, 255, 0.25);
+$color-icon-hover: rgba(255, 255, 255, 0.5);
+
+// Градиенты: у второго цвета позиция останова 80% — часть значения.
+$gradient-logo-from: #c43ce1;
+$gradient-logo-to: #008cff;
+$gradient-title-from: #00879f;
+$gradient-title-to: #00ff95;
+$gradient-stop: 80%;
+
+$font-main: 'DevFont', sans-serif;
+$breakpoint-mobile: 600px;

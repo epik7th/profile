@@ -1,0 +1,31 @@
+@use '../abstracts' as *;
+
+.contact-container {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.contact-row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 8px;
+}
+.contact-row-icon {
+	height: 18px;
+	width: 18px;
+	overflow: hidden;
+	display: inline-block;
+	background: $color-icon;
+}
+.telegram-icon {
+	-webkit-mask: url('../../assets/icons/telegram.svg') no-repeat center center;
+	mask: url('../../assets/icons/telegram.svg') no-repeat center center;
+}
+.mail-icon {
+	-webkit-mask: url('../../assets/icons/envelope.svg') no-repeat center center;
+	mask: url('../../assets/icons/envelope.svg') no-repeat center center;
+}
+.contact-row:hover .contact-row-icon {
+	background: $color-icon-hover;
+}

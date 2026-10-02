@@ -1,0 +1,53 @@
+@use '../abstracts' as *;
+
+.logo {
+	animation: slideRight 500ms ease-out 0s 1 normal none;
+	font-weight: 100;
+	padding: 0 1rem;
+	font-size: 24px;
+	position: relative;
+	margin-left: 10px;
+	@include bracket-frame(-15px, -12px, $color-bracket);
+}
+.logo > span {
+	font-weight: 700;
+	color: $color-white;
+	@include gradient-text($gradient-logo-from, $gradient-logo-to, $gradient-stop);
+}
+header {
+	z-index: 1;
+	overflow: hidden;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	backdrop-filter: blur(4px);
+	top: 0;
+	position: sticky;
+	background: $color-header-bg;
+}
+.header-nav {
+	animation: slideLeft 500ms ease-out 0s 1 normal none;
+}
+.header-nav ul {
+	padding: 1rem 50px;
+	margin: 0;
+	list-style: none;
+	display: flex;
+	flex-direction: row;
+	gap: 1.5rem;
+}
+.header-nav ul > li > a {
+	text-decoration: none;
+	color: $color-nav-link;
+}
+.header-nav ul > li > a:hover {
+	@include bracket-frame(-10px, -12px, $color-white);
+	color: $color-nav-link-hover;
+	transition: color 200ms linear;
+}
+@media (max-width: $breakpoint-mobile) {
+	header {
+		zoom: 0.6;
+	}
+}

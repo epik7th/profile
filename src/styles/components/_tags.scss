@@ -1,0 +1,23 @@
+@use '../abstracts' as *;
+
+.tags {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+.tags > div {
+	border: 1px solid $color-border;
+	padding: 5px;
+	font-weight: 500;
+	font-size: 0.9rem;
+	color: $color-tag-text;
+	transition:
+		color 500ms linear,
+		border-color 500ms linear;
+	cursor: default;
+}
+.tags > div:hover {
+	color: $color-tag-hover;
+	border-color: $color-tag-hover;
+}

@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Локальные артефакты визуальной сверки (воспроизводимы, см. AGENTS.md)
+docs/verification/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
